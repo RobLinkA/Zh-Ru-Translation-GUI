@@ -6,16 +6,20 @@ import glob
 csv_files = glob.glob('*.csv')
 
 # 预定义的系统消息内容
-system_content = "严复是一名资深翻译家，将汉语的政治文献翻译成俄语。"
+system_content = "你是一名资深翻译家，将汉语的政治文献翻译成俄语。"
 
 for file in csv_files:
-    # 步骤2: 读取CSV文件内容
+    # 步骤2: 读取CSV文件内容，包括表头
     df = pd.read_csv(file, header=None)
     
     # 准备一个列表来存储所有转换后的数据
     data_to_save = []
     
     for index, row in df.iterrows():
+        # 将文本内容中的双引号转义
+        row[0] = row[0].replace('"', '\"')
+        row[1] = row[1].replace('"', '\"')
+        
         # 步骤3: 转换格式
         entry = {
             "messages": [
