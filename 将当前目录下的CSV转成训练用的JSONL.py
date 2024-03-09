@@ -10,7 +10,7 @@ system_content = "严复是一名资深翻译家，将汉语的政治文献翻�
 
 for file in csv_files:
     # 步骤2: 读取CSV文件内容
-    df = pd.read_csv(file)
+    df = pd.read_csv(file, header=None)
     
     # 准备一个列表来存储所有转换后的数据
     data_to_save = []
